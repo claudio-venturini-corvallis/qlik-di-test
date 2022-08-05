@@ -1,0 +1,151 @@
+{
+	"name":	"F1__2022-08-05--15-10-53-389718",
+	"cmd.replication_definition":	{
+		"tasks":	[{
+				"task":	{
+					"name":	"F1",
+					"source_name":	"F1_source",
+					"target_names":	["F1_target"]
+				},
+				"source":	{
+					"rep_source":	{
+						"source_name":	"F1_source",
+						"database_name":	"F1_source"
+					},
+					"source_tables":	{
+						"name":	"F1_source",
+						"explicit_included_tables":	[{
+								"owner":	"f1",
+								"name":	"race",
+								"validation_sampling_percentage":	0
+							}, {
+								"owner":	"f1",
+								"name":	"result",
+								"validation_sampling_percentage":	0
+							}, {
+								"owner":	"f1",
+								"name":	"sprint_result",
+								"validation_sampling_percentage":	0
+							}]
+					}
+				},
+				"targets":	[{
+						"rep_target":	{
+							"target_name":	"F1_target",
+							"target_state":	"DISABLED",
+							"database_name":	"F1_target"
+						}
+					}],
+				"task_settings":	{
+					"source_settings":	{
+					},
+					"target_settings":	{
+						"default_schema":	"F1",
+						"queue_settings":	{
+							"message_shape":	{
+							},
+							"key_shape":	{
+							}
+						},
+						"ftm_settings":	{
+						},
+						"artifacts_cleanup_enabled":	false
+					},
+					"sorter_settings":	{
+						"local_transactions_storage":	{
+						}
+					},
+					"common_settings":	{
+						"change_table_settings":	{
+							"table_suffix":	"__CT",
+							"header_columns_settings":	{
+							}
+						},
+						"audit_table_settings":	{
+						},
+						"save_changes_enabled":	true,
+						"dr_settings":	{
+						},
+						"statistics_table_settings":	{
+						},
+						"bidi_table_settings":	{
+						},
+						"task_uuid":	"6dcfb387-91a8-c54f-b1c1-4ce8c0363179",
+						"status_table_settings":	{
+						},
+						"suspended_tables_table_settings":	{
+						},
+						"history_table_settings":	{
+						},
+						"exception_table_settings":	{
+						},
+						"recovery_table_settings":	{
+						},
+						"data_batching_settings":	{
+						},
+						"data_batching_table_settings":	{
+						},
+						"log_stream_settings_depricated":	{
+						},
+						"ddl_history_table_settings":	{
+						},
+						"customized_charset_settings":	{
+							"validation":	{
+								"sub_char":	0
+							}
+						}
+					}
+				},
+				"global_manipulation":	{
+					"name":	"global_manipulation",
+					"rules":	[{
+							"action":	"RENAME_TABLE",
+							"name":	"Uppercase table names",
+							"expression":	"upper($AR_M_MODIFIED_TABLE_NAME)",
+							"column":	{
+								"where_column_name":	"%",
+								"new_data_type":	"kAR_DATA_TYPE_STR"
+							},
+							"sub_action":	"CONVERT_UPPER"
+						}]
+				}
+			}],
+		"databases":	[{
+				"name":	"F1_source",
+				"role":	"SOURCE",
+				"is_licensed":	true,
+				"type_id":	"MYSQL_COMPONENT_TYPE",
+				"db_settings":	{
+					"$type":	"MysqlSettings",
+					"username":	"compose",
+					"password":	"{ZA3BD8F202CC0D2101B77855532C644326D423970041EFA455}",
+					"server":	"localhost"
+				},
+				"override_properties":	{
+				}
+			}, {
+				"name":	"F1_target",
+				"role":	"TARGET",
+				"is_licensed":	true,
+				"type_id":	"SNOWFLAKE_COMPONENT_TYPE",
+				"db_settings":	{
+					"$type":	"SnowflakeSettings",
+					"username":	"dolphin",
+					"password":	"{ZA8CCDDCF5B0FE6DAB941AD666E009A66B7BE554A18B4AAD7718526A49E71DF6389B304D506182363A}",
+					"server":	"pta01770.snowflakecomputing.com",
+					"database":	"DOLPHIN_DB",
+					"warehouse":	"DOLPHIN_WH",
+					"stagingtype":	"SNOWFLAKE_STAGE"
+				},
+				"override_properties":	{
+				}
+			}]
+	},
+	"_version":	{
+		"version":	"2021.5.0.764",
+		"version_major":	2021,
+		"version_minor":	5,
+		"version_revision":	764
+	},
+	"description":	"Host name: WIN-O1UR0KM3P4K, Time: 2022-08-05 15:10:53.389718"
+}
